@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta http-equiv="Content-Language" content="en" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
-<head>
-  <meta http-equiv="Content-Language" content="en" />
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
 
-  <title></title>
+    <link href="./css/public.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="./img/logo.png" />
+  </head>
 
-  <link href="./css/public.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="./img/logo.png">
+  <body lang="en">
+    <div id="menu"></div>
+    <div id="main"></div>
+    <div id="load"></div>
 
-  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-  <script src="./js/public.js" language="javascript" type="text/javascript"></script>
-
-</head>
-
-<body lang="en">
-  <div id='menu'></div>
-  <div id='main'></div>
-  <div id="load"></div>
-
-  <script>
-    // Check Documentation Version for every 5 seconds
-    setInterval(function () {
-      Push();
-    },
-      5000);
-    function Push() {
-      $.ajax({
-        type: "GET",
-        url: "/api_project.json?t=" + new Date().getTime(),
-        success: function (data) {
-          var obj = eval(data);
-          var oldTime = document.getElementById('gTime').innerHTML;
-          if (oldTime !== obj.generator.time) {
-            location.reload();
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script
+      src="./js/public.js"
+      language="javascript"
+      type="text/javascript"
+    ></script>
+    <script>
+      // Check Documentation Version for every 5 seconds
+      setInterval(function() {
+        Push();
+      }, 5000);
+      function Push() {
+        $.ajax({
+          type: 'GET',
+          url: '/api_project.json?t=' + new Date().getTime(),
+          success: function(data) {
+            var obj = eval(data);
+            var oldTime = document.getElementById('gTime').innerHTML;
+            if (oldTime !== obj.generator.time) {
+              location.reload();
+            }
           }
-        }
-      });
-    }
-  </script>
-</body>
-
+        });
+      }
+    </script>
+  </body>
 </html>
