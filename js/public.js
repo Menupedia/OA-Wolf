@@ -395,19 +395,19 @@ $(function() {
       });
 
       // reorder groups
-      const newGroups = {
-        User: groups.User,
-        OAuth2: groups.OAuth2,
-        Picture: groups.Picture,
-        Restaurant: groups.Restaurant,
-        Category: groups.Category,
-        Dish: groups.Dish,
-        Rating_Collection: groups.Rating_Collection,
-        Restaurant_Rating: groups.Restaurant_Rating,
-        Dish_Rating: groups.Dish_Rating,
-        Contribution: groups.Contribution,
-        Message: groups.Message
-      };
+      const newGroups = {};
+
+      for (const element of menu.projectData.order) {
+        if (typeof groups[element] !== 'undefined') {
+          newGroups[element] = groups[element];
+        }
+      }
+
+      Object.keys(groups).forEach(element => {
+        if (typeof newGroups[element] === 'undefined') {
+          newGroups[element] = groups[element];
+        }
+      });
 
       groups = newGroups;
 
